@@ -1,0 +1,36 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
+    <persistence-unit name="partiel">
+        <description>
+            Persistence unit for Hibernate User Guide
+        </description>
+
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        
+        <class>com.ensup.partielwebservice.domaine.Personne</class>
+        <class>com.ensup.partielwebservice.domaine.Etudiant</class>
+        <class>com.ensup.partielwebservice.domaine.Cours</class>
+        <class>com.ensup.partielwebservice.domaine.User</class>
+
+        <properties>
+        	<!-- Détecter automatiquement les nouvelles classes -->
+        	<property name="hibernate.archive.autodetection" value="class"/>
+        	<property name="hibernate.format_sql" value="true"/>       	
+        	<!-- DataBase Configuration -->
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/partiel?serverTimezone=UTC" />
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value=""/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+        </properties>
+       	
+
+    </persistence-unit>
+
+</persistence>

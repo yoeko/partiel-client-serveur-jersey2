@@ -14,11 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.GenericType;
-import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.api.client.config.DefaultClientConfig;
+
 
 import domaine.Etudiant;
 import domaine.User;
@@ -75,40 +71,47 @@ public class ModifEtudiantServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("student", null);
 		user = (User) session.getAttribute("user");
-
-		DefaultClientConfig defaultClientConfig = new DefaultClientConfig();
-		defaultClientConfig.getClasses().add(JacksonJsonProvider.class);
-		Client client = Client.create(defaultClientConfig);
-		
-		
-		WebResource webResource = client.resource("http://localhost:8080/partielwebservice-webservice/rest/json/student/update/"+idEtudiant);
-
-		 webResource.type("application/json").put(ClientResponse.class, jsonString);
-		
-		
-
-		session.setAttribute("student", null);
-		session.setAttribute("students", lister());
+		/*
+		 * DefaultClientConfig defaultClientConfig = new DefaultClientConfig();
+		 * defaultClientConfig.getClasses().add(JacksonJsonProvider.class); Client
+		 * client = Client.create(defaultClientConfig);
+		 * 
+		 * 
+		 * WebResource webResource = client.resource(
+		 * "http://localhost:8080/partielwebservice-webservice/rest/json/student/update/"
+		 * +idEtudiant);
+		 * 
+		 * webResource.type("application/json").put(ClientResponse.class, jsonString);
+		 * 
+		 * 
+		 * 
+		 * session.setAttribute("student", null); session.setAttribute("students",
+		 * lister());
+		 */
 //		session.setAttribute("courses", getAllCours());
 		
 		dispatcher = request.getRequestDispatcher("etudiant.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	private List<Etudiant> lister() {
-
-		DefaultClientConfig defaultClientConfig = new DefaultClientConfig();
-		defaultClientConfig.getClasses().add(JacksonJsonProvider.class);
-		Client client = Client.create(defaultClientConfig);
-		
-		
-		WebResource webResource = client.resource("http://localhost:8080/partielwebservice-webservice/rest/json/student/get");
-
-		ClientResponse response2 = webResource.accept("application/json").get(ClientResponse.class);
-
-		
-		return (List<Etudiant>) response2.getEntity(new GenericType<List<Etudiant>>(){});
-	}
+	/*
+	 * private List<Etudiant> lister() {
+	 * 
+	 * DefaultClientConfig defaultClientConfig = new DefaultClientConfig();
+	 * defaultClientConfig.getClasses().add(JacksonJsonProvider.class); Client
+	 * client = Client.create(defaultClientConfig);
+	 * 
+	 * 
+	 * WebResource webResource = client.resource(
+	 * "http://localhost:8080/partielwebservice-webservice/rest/json/student/get");
+	 * 
+	 * ClientResponse response2 =
+	 * webResource.accept("application/json").get(ClientResponse.class);
+	 * 
+	 * 
+	 * return (List<Etudiant>) response2.getEntity(new
+	 * GenericType<List<Etudiant>>(){}); }
+	 */
 
 //	private List<Cours> getAllCours() {
 //

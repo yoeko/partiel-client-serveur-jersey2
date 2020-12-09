@@ -33,21 +33,44 @@
 	    <scope>provided</scope>	    
 	</dependency>
 	<dependency>
-	  <groupId>com.sun.jersey</groupId>
-	  <artifactId>jersey-client</artifactId>
-	  <version>1.19.4</version>
+	    <groupId>org.glassfish.jersey.core</groupId>
+	    <artifactId>jersey-client</artifactId>
+	    <version>2.25.1</version>
 	</dependency>
 	<dependency>
-		<groupId>com.fasterxml.jackson.core</groupId>
-		<artifactId>jackson-databind</artifactId>
-		<version>2.11.1</version>
+	    <groupId>org.glassfish.jersey.media</groupId>
+	    <artifactId>jersey-media-json-jackson</artifactId>
+	    <version>2.25.1</version>
 	</dependency>
 	<dependency>
 		<groupId>com.fasterxml.jackson.jaxrs</groupId>
 		<artifactId>jackson-jaxrs-json-provider</artifactId>
+		<version>2.11.3</version>
+	</dependency>
+	
+	
+	
+	<!-- jersey 1 -->
+	
+	<!-- <dependency>
+		<groupId>com.sun.jersey</groupId>
+		<artifactId>jersey-client</artifactId>
+		<version>1.19.4</version>
+	</dependency> -->
+
+	<!-- <dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-databind</artifactId>
+		<version>2.11.1</version>
+	</dependency>
+
+
+	<dependency>
+		<groupId>com.fasterxml.jackson.jaxrs</groupId>
+		<artifactId>jackson-jaxrs-json-provider</artifactId>
 		<version>2.12.0-rc2</version>
-	</dependency>  
-  </dependencies>
+	</dependency>  -->
+  </dependencies> 
 
   <build>
     <finalName>partielwebservice-client</finalName>

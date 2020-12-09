@@ -20,11 +20,7 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.GenericType;
-import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.api.client.config.DefaultClientConfig;
+
 
 import domaine.Etudiant;
 import domaine.User;
@@ -73,19 +69,23 @@ public class AjoutEtudiantServlet extends HttpServlet {
 		user = (User) session.getAttribute("user");
 		
 		
-		DefaultClientConfig defaultClientConfig = new DefaultClientConfig();
-		defaultClientConfig.getClasses().add(JacksonJsonProvider.class);
-		Client client = Client.create(defaultClientConfig);
-		
-		ObjectMapper mapper = new ObjectMapper();
-		String jsonString = mapper.writeValueAsString(student);
-		
-		WebResource webResource = client.resource("http://localhost:8080/partielwebservice-webservice/rest/json/student/create");
-
-		ClientResponse response2 = webResource.type("application/json").post(ClientResponse.class, jsonString);
-		
-		
-		session.setAttribute("students", lister());
+		/*
+		 * DefaultClientConfig defaultClientConfig = new DefaultClientConfig();
+		 * defaultClientConfig.getClasses().add(JacksonJsonProvider.class); Client
+		 * client = Client.create(defaultClientConfig);
+		 * 
+		 * ObjectMapper mapper = new ObjectMapper(); String jsonString =
+		 * mapper.writeValueAsString(student);
+		 * 
+		 * WebResource webResource = client.resource(
+		 * "http://localhost:8080/partielwebservice-webservice/rest/json/student/create"
+		 * );
+		 * 
+		 * ClientResponse response2 =
+		 * webResource.type("application/json").post(ClientResponse.class, jsonString);
+		 * 
+		 */
+		//session.setAttribute("students", lister());
 		//session.setAttribute("courses", getAllCourses());
 		if(user.getProfil().equalsIgnoreCase("directeur")) {
 			dispatcher = request.getRequestDispatcher("etudiant.jsp");
@@ -100,28 +100,27 @@ public class AjoutEtudiantServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	private List<Etudiant> lister() {
-
-		List<Etudiant> students = Collections.emptyList();
-		try {
-			
-//			students = studentService.getAllStudent();
-			
-			DefaultClientConfig defaultClientConfig = new DefaultClientConfig();
-			defaultClientConfig.getClasses().add(JacksonJsonProvider.class);
-			Client client = Client.create(defaultClientConfig);
-			
-			
-			
-			WebResource webResource = client.resource("http://localhost:8080/partielwebservice-webservice/rest/json/student/get");
-
-			 students = webResource.get(new GenericType<List<Etudiant>>(){});
-			
-			
-		} catch (Exception e) {
-
-		}
-		return students;
-	}
-
+	/*
+	 * private List<Etudiant> lister() {
+	 * 
+	 * List<Etudiant> students = Collections.emptyList(); try {
+	 * 
+	 * // students = studentService.getAllStudent();
+	 * 
+	 * DefaultClientConfig defaultClientConfig = new DefaultClientConfig();
+	 * defaultClientConfig.getClasses().add(JacksonJsonProvider.class); Client
+	 * client = Client.create(defaultClientConfig);
+	 * 
+	 * 
+	 * 
+	 * WebResource webResource = client.resource(
+	 * "http://localhost:8080/partielwebservice-webservice/rest/json/student/get");
+	 * 
+	 * students = webResource.get(new GenericType<List<Etudiant>>(){});
+	 * 
+	 * 
+	 * } catch (Exception e) {
+	 * 
+	 * } return students; }
+	 */
 }

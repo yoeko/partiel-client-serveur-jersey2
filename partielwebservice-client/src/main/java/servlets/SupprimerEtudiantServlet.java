@@ -12,11 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.GenericType;
-import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.api.client.config.DefaultClientConfig;
+
 
 import domaine.Etudiant;
 import domaine.User;
@@ -72,22 +68,7 @@ public class SupprimerEtudiantServlet extends HttpServlet {
 		String object = request.getParameter("id");
 		int id = Integer.valueOf(object);
 		
-		DefaultClientConfig defaultClientConfig = new DefaultClientConfig();
-		defaultClientConfig.getClasses().add(JacksonJsonProvider.class);
-		Client client = Client.create(defaultClientConfig);
 		
-		
-		
-		WebResource webResource = client.resource("http://localhost:8080/partielwebservice-webservice/rest/json/student/delete/"+id);
-
-		webResource.type("application/json").delete(ClientResponse.class);
-		
-		
-
-		dispatcher = request.getRequestDispatcher("etudiant.jsp");
-		
-		user = (User) session.getAttribute("user");
-		session.setAttribute("students", lister());
 //		session.setAttribute("courses", getAllCours());
 		session.setAttribute("student", null);
 		
@@ -96,29 +77,7 @@ public class SupprimerEtudiantServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	private List<Etudiant> lister() {
 
-		List<Etudiant> students = Collections.emptyList();
-		try {
-			
-//			students = studentService.getAllStudent();
-			
-			DefaultClientConfig defaultClientConfig = new DefaultClientConfig();
-			defaultClientConfig.getClasses().add(JacksonJsonProvider.class);
-			Client client = Client.create(defaultClientConfig);
-			
-			
-			
-			WebResource webResource = client.resource("http://localhost:8080/partielwebservice-webservice/rest/json/student/get");
-
-			 students = webResource.get(new GenericType<List<Etudiant>>(){});
-			
-			
-		} catch (Exception e) {
-
-		}
-		return students;
-	}
 //
 //	private List<Cours> getAllCours() {
 //

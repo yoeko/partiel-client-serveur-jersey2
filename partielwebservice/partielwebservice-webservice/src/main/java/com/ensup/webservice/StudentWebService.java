@@ -17,7 +17,6 @@ import com.ensup.partielwebservice.dao.IEtudiantDao;
 import com.ensup.partielwebservice.domaine.Etudiant;
 import com.ensup.partielwebservice.service.EtudiantService;
 import com.ensup.partielwebservice.service.IEtudiantService;
-import com.sun.jersey.api.model.PathValue;
 
 @Path("/json/student")
 public class StudentWebService {

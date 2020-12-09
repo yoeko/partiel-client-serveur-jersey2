@@ -36,8 +36,9 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
-	
-	<dependency>
+    
+	<!-- FOR JERSEY 1 -->
+	<!-- <dependency>
 	  <groupId>com.sun.jersey</groupId>
 	  <artifactId>jersey-server</artifactId>
 	  <version>1.19.4</version>
@@ -53,6 +54,27 @@
 	    <groupId>com.sun.jersey</groupId>
 	    <artifactId>jersey-json</artifactId>
 	    <version>1.19.4</version>
+	</dependency> -->
+	
+	<!-- FOR JERSEY 2  -->
+	
+	<dependency>
+	    <groupId>org.glassfish.jersey.containers</groupId>
+	    <artifactId>jersey-container-servlet</artifactId>
+	    <version>2.25</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.glassfish.jersey.media</groupId>
+	    <artifactId>jersey-media-json-jackson</artifactId>
+	    <version>2.26</version>
+	</dependency>
+    
+	<!-- Required only when you are using JAX-RS Client -->
+	<dependency>
+	    <groupId>org.glassfish.jersey.core</groupId>
+	    <artifactId>jersey-client</artifactId>
+	    <version>2.25</version>
 	</dependency>
 	
   </dependencies>

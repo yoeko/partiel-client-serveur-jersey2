@@ -5,6 +5,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -21,13 +22,16 @@ public class UserWebService {
 	@GET
 	@Path("/get")
 	@Produces(MediaType.APPLICATION_JSON)
-	public User getUserInJson() {
+	public Response getUserInJson() {
 
 		User user = new User();
 		user.setLogin("admin");
 		user.setPassword("admin");
+		
+		GenericEntity<User> entity = new GenericEntity<User>(user, User.class);
+	    return Response.ok().entity(entity).build();
 
-		return user;
+	
 
 	}
 
@@ -39,7 +43,7 @@ public class UserWebService {
 
 		User result = userService.getUser(user.getLogin(), user.getPassword());
 		return result;
-
+	
 	}
 
 }

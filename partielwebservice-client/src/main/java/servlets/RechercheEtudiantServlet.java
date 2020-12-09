@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import domaine.Etudiant;
 import domaine.User;
+import service.StudentServiceClient;
 
 /**
  * Servlet implementation class RechercheEtudiantServlet
@@ -21,7 +22,7 @@ import domaine.User;
 public class RechercheEtudiantServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private User user = null;
-//	private EtudiantService studentService;
+	private StudentServiceClient studentService;
 //	private IEtudiantDao etudiantDao = new EtudiantDao();
 	
 	/**
@@ -29,7 +30,7 @@ public class RechercheEtudiantServlet extends HttpServlet {
 	 */
 	public RechercheEtudiantServlet() {
 		super();
-//		studentService = new EtudiantService(etudiantDao);
+		studentService = new StudentServiceClient();
 	}
 
 	/**
@@ -53,12 +54,8 @@ public class RechercheEtudiantServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("student", null);
 		user = (User) session.getAttribute("user");
-//		List<Etudiant> students = studentService.getStudentByResearch(request.getParameter("firstNameR"), request.getParameter("lastNameR"));
 
-		
-		
-		
-		//session.setAttribute("students", students);
+		session.setAttribute("students", studentService.getStudentByFirstAndLastName(request.getParameter("firstNameR"), request.getParameter("lastNameR")));
 		RequestDispatcher dispatcher = null;
 		dispatcher = request.getRequestDispatcher("etudiant.jsp");
 		dispatcher.forward(request, response);

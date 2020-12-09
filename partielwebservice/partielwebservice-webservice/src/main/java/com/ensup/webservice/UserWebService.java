@@ -22,14 +22,13 @@ public class UserWebService {
 	@GET
 	@Path("/get")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getUserInJson() {
+	public User getUserInJson() {
 
 		User user = new User();
 		user.setLogin("admin");
 		user.setPassword("admin");
-		
-		GenericEntity<User> entity = new GenericEntity<User>(user, User.class);
-	    return Response.ok().entity(entity).build();
+
+	    return user;
 
 	
 

@@ -12,35 +12,31 @@ import org.glassfish.jersey.client.ClientConfig;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import domaine.User;
 
 public class UserServiceClient {
 	
 	
-	private String url = "http://localhost:8080/partielwebservice/rest/json/user/";
-	ObjectMapper mapper =  new ObjectMapper();
+	private String url = "http://localhost:8080/partielwebservice-webservice/rest/json/user/";
 	
 	
 	public User login(User user)  {
 		
-		/*
-		 * System.out.println("dans le service" + user.getLogin());
-		 * 
-		 * String userMapper = "{\"login\":\"" + user.getLogin() + "\", \"password\":\""
-		 * + user.getPassword() + "\"}";
-		 * 
-		 * Response response = invocationBuilder.post(Entity.entity(userMapper,
-		 * MediaType.APPLICATION_JSON));
-		 * 
-		 * User userResponse = response.readEntity(User.class);
-		 * 
-		 * System.out.println("the user found"+userResponse.getLast_name()); return
-		 * userResponse;
-		 */
+		ClientConfig clientConfig = new ClientConfig();
+		clientConfig.register(JacksonJsonProvider.class);
 		
-		return user;
+		Client client = ClientBuilder.newClient(clientConfig);
+		WebTarget webTarget = client.target(url).path("login");
+		
+		Response response = webTarget.request("application/json").post(Entity.entity(user, MediaType.APPLICATION_JSON));
+		 
+		  User userResponse = response.readEntity(User.class);
+		  
+		  System.out.println("the user found"+userResponse.getLast_name()); 
+		  return userResponse;
+		 
+
 		
 	}
 	

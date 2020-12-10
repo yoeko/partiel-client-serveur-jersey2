@@ -68,7 +68,8 @@ public class ViewEtudiantServlet extends HttpServlet {
 
 		dispatcher = request.getRequestDispatcher("etudiantView.jsp");
 		session.setAttribute("student", studentService.getStudentById(id));
-
+		
+		dispatcher = request.getRequestDispatcher("etudiantView.jsp");
 		dispatcher.forward(request, response);
 	}
 

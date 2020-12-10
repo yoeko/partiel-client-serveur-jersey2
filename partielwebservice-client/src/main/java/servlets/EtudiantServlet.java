@@ -54,7 +54,6 @@ public class EtudiantServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("voilaaaaaaaaaaaaaaaaaaaaaa");
 		doPost(request, response);
 	}
 
@@ -67,8 +66,6 @@ public class EtudiantServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		user = (User) session.getAttribute("user");
-		
-		System.out.println("dedanssssssssssssssssssssssssssssss");
 		
 		session.setAttribute("students",studentService.getListStudent() );
 		//session.setAttribute("courses", getAllCours());

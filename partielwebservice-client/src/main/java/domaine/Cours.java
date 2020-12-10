@@ -20,6 +20,7 @@ public class Cours {
 		this.numberHours = numberHours;
 	}
 
+
 	public Long getId() {
 		return Id;
 	}

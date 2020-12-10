@@ -9,13 +9,15 @@
 
 <div class="container">
 <br/><br/><br/><br/><br/><br/>
-	<%List<Cours> listCours = (List<Cours>) session.getAttribute("cours");%>
+	<%List<Cours> listCours = (List<Cours>) session.getAttribute("courses");%>
 	<h1>Associé un cour a un etudiant</h1>
 	<form action="EtudiantCoursServlet" method="post">
 	<br/><br/>
 	<% Etudiant student = (Etudiant) session.getAttribute("student");%>
 	
-		<input type="text" id="mail" class="form-control" name="mail" value="<%=student.getMail()%>">
+		<input type="text" id="id" hidden="true" class="form-control" name="id" value="<%=student.getId()%>">
+		<input type="text" id="prenom" class="form-control" name="prenom" value="<%=student.getFirst_name() +" "+ student.getLast_name()%>">
+		
 		
 		<br/><br/>
 		
@@ -25,7 +27,7 @@
 				        {
 				         
 				%>
-					   <option name="cours" value="<%=course.getThemeCourse()%>"><%=course.getThemeCourse()%></option>
+					   <option name="cours" value="<%=course.getId()%>"><%=course.getThemeCourse()%></option>
 				<%
 				        }
 				%>

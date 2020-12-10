@@ -9,6 +9,8 @@
 
 <div class="container">
 	<br /> <br /> <br /> <br /> <br /> <br />
+	
+	<a href="coursAjout.jsp">Ajouter un cours</a>
 
 	<!-- Masthead Heading-->
 	<h1>Liste des cours</h1>

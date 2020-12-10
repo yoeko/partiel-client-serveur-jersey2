@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import domaine.User;
+import service.CoursServiceClient;
+import service.ICoursServiceClient;
 import service.IStudentServiceClient;
 import service.IUserServiceClient;
 import service.StudentServiceClient;
@@ -29,7 +31,7 @@ public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private IUserServiceClient userService;
 	private IStudentServiceClient studentService;
-//	private CoursService courseService;
+	private ICoursServiceClient courseService;
 	private RequestDispatcher dispatcher = null;
 //	private IEtudiantDao etudiantDao = new EtudiantDao();
 
@@ -38,7 +40,7 @@ public class ConnexionServlet extends HttpServlet {
 	 */
 	public ConnexionServlet() {
 		userService = new UserServiceClient();
-//		courseService = new CoursService();
+		courseService = new CoursServiceClient();
 		studentService = new StudentServiceClient();
 	}
 
@@ -85,7 +87,7 @@ public class ConnexionServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", userRetour);
 			session.setAttribute("students", studentService.getListStudent());
-//			session.setAttribute("courses", getAllCourses());
+			session.setAttribute("courses", courseService.getAllCours());
 
 		} else {
 			dispatcher = request.getRequestDispatcher("index.jsp");

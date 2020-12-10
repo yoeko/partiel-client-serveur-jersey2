@@ -17,6 +17,8 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import domaine.Etudiant;
 import domaine.User;
+import service.CoursServiceClient;
+import service.ICoursServiceClient;
 import service.IStudentServiceClient;
 import service.StudentServiceClient;
 
@@ -28,15 +30,14 @@ public class AjoutEtudiantServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private IStudentServiceClient studentService;
 	private RequestDispatcher dispatcher = null;
-//	private CoursService courseService;
+	private ICoursServiceClient courseService;
 	private User user = null;
-//	private IEtudiantDao etudiantDao = new EtudiantDao();
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public AjoutEtudiantServlet() {
 		studentService = new StudentServiceClient();
-//		courseService = new CoursService();
+		courseService = new CoursServiceClient();
 	}
 
 	/**
@@ -66,7 +67,7 @@ public class AjoutEtudiantServlet extends HttpServlet {
 		studentService.createStudent(student);
 		
 		session.setAttribute("students", studentService.getListStudent());
-		//session.setAttribute("courses", getAllCourses());
+		session.setAttribute("courses", courseService.getAllCours());
 		if(user.getProfil().equalsIgnoreCase("directeur")) {
 			dispatcher = request.getRequestDispatcher("etudiant.jsp");
 		}

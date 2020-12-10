@@ -3,6 +3,7 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
+
   	<display-name>Archetype Created Web Application</display-name>
 	 
 	<servlet>
@@ -101,4 +102,28 @@
 		<url-pattern>/ViewEtudiantServlet</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>EtudiantCoursServlet</servlet-name>
+		<display-name>EtudiantCoursServlet</display-name>
+		<description>servlet associeer cours etudiant</description>
+		<servlet-class>servlets.EtudiantCoursServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>EtudiantCoursServlet</servlet-name>
+		<url-pattern>/EtudiantCoursServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AjoutCoursServlet</servlet-name>
+		<display-name>AjoutCoursServlet</display-name>
+		<description>servlet AjoutCoursServlet</description>
+		<servlet-class>servlets.AjoutCoursServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>AjoutCoursServlet</servlet-name>
+		<url-pattern>/AjoutCoursServlet</url-pattern>
+	</servlet-mapping>
+
 </web-app>

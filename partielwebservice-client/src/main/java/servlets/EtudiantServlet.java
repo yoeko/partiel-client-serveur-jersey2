@@ -21,6 +21,8 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import domaine.Etudiant;
 import domaine.User;
+import service.CoursServiceClient;
+import service.ICoursServiceClient;
 import service.IStudentServiceClient;
 import service.StudentServiceClient;
 
@@ -35,16 +37,15 @@ public class EtudiantServlet extends HttpServlet {
 	//private static final long serialVersionUID = 1L;
 	
 	private IStudentServiceClient studentService;
-//	private CoursService courseService;
+	private ICoursServiceClient courseService;
 	private RequestDispatcher dispatcher = null;
 	private User user = null;
-//	private IEtudiantDao etudiantDao = new EtudiantDao();
 	
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public EtudiantServlet() {
-//		courseService = new CoursService();
+		courseService = new CoursServiceClient();
 		studentService = new StudentServiceClient();
 	}
 
@@ -68,7 +69,7 @@ public class EtudiantServlet extends HttpServlet {
 		user = (User) session.getAttribute("user");
 		
 		session.setAttribute("students",studentService.getListStudent() );
-		//session.setAttribute("courses", getAllCours());
+		session.setAttribute("courses",courseService.getAllCours());
 		
 		dispatcher = request.getRequestDispatcher("etudiant.jsp");
 		dispatcher.forward(request, response);

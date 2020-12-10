@@ -17,6 +17,13 @@ public class CoursServiceClient implements ICoursServiceClient {
 	private static final String url = "http://localhost:8080/partielwebservice-webservice/rest/json/cours/";
 	
 	
+	
+	
+	public CoursServiceClient() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public List<Cours> getAllCours(){
 		

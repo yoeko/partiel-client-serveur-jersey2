@@ -13,13 +13,14 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import domaine.Etudiant;
+import service.StudentServiceClient;
 
 /**
  * Servlet implementation class EditerEtudiantServlet
  */
 public class EditerEtudiantServlet extends HttpServlet {
 //	private static final long serialVersionUID = 1L;
-//	private EtudiantService studentService;
+	private StudentServiceClient studentService;
 	private RequestDispatcher dispatcher = null;
 //	private IEtudiantDao etudiantDao = new EtudiantDao();
 
@@ -27,7 +28,7 @@ public class EditerEtudiantServlet extends HttpServlet {
 	 * Default constructor.
 	 */
 	public EditerEtudiantServlet() {
-//		studentService = new EtudiantService(etudiantDao);
+		studentService = new StudentServiceClient();
 	}
 
 	/**
@@ -60,11 +61,12 @@ public class EditerEtudiantServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		String object = request.getParameter("id");
-		int id = Integer.valueOf(object);
+		Long id = Long.valueOf(object);
 				
-//		Etudiant student = studentService.getEtudiant((long) id);
-		
-		
+		dispatcher = request.getRequestDispatcher("etudiantModif.jsp");
+
+		session.setAttribute("student", studentService.getStudentById(id));
+				
 		dispatcher.forward(request, response);
 	}
 

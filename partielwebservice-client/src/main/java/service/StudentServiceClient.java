@@ -7,6 +7,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.client.ClientConfig;
@@ -26,10 +27,7 @@ public class StudentServiceClient {
 	
 	public List<Etudiant> getListStudent(){
 		
-		ClientConfig clientConfig = new ClientConfig();
-		clientConfig.register(JacksonJsonProvider.class);
-		
-		Client client = ClientBuilder.newClient(clientConfig);
+		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(url).path("get");
 		
 		Response response = webTarget.request("application/json").get();
@@ -43,7 +41,7 @@ public class StudentServiceClient {
 	
 	public void createStudent(Etudiant student)
 	{
-
+		
 		Client client = ClientBuilder.newClient();
 
 		WebTarget webTarget = client.target(url).path("create");
@@ -63,11 +61,10 @@ public class StudentServiceClient {
 		
 	}
 
-	public Etudiant getStudentById(int id) {
-		ClientConfig clientConfig = new ClientConfig();
-		clientConfig.register(JacksonJsonProvider.class);
+	public Etudiant getStudentById(Long id) {
 		
-		Client client = ClientBuilder.newClient(clientConfig);
+		
+		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(url).path("detail/"+id);
 		
 		Response response = webTarget.request("application/json").get();
@@ -77,10 +74,8 @@ public class StudentServiceClient {
 	}
 	
 	public List<Etudiant> getStudentByFirstAndLastName(String first_name , String last_name) {
-		ClientConfig clientConfig = new ClientConfig();
-		clientConfig.register(JacksonJsonProvider.class);
 		
-		Client client = ClientBuilder.newClient(clientConfig);
+		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(url).path("research/"+first_name+"/"+last_name);
 		
 		Response response = webTarget.request("application/json").get();
@@ -90,6 +85,7 @@ public class StudentServiceClient {
 		
 	}
 	
+
 	public void deleteStudent(int id) {
 		Client client = ClientBuilder.newClient();
 
@@ -97,4 +93,18 @@ public class StudentServiceClient {
 		
 		Response response = webTarget.request("application/json").delete();
 	}
+
+	public void updateStudent(Long id, Etudiant etudiant) {
+		
+		Client client = ClientBuilder.newClient();
+
+		WebTarget webTarget = client.target(url).path("update/"+id);
+		
+		 webTarget.request("application/json").put(Entity.entity(etudiant, MediaType.APPLICATION_JSON));
+		
+		
+		
+	}
+	
+
 }

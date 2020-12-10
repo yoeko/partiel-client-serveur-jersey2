@@ -8,12 +8,12 @@ public interface ICoursDao {
 
 	void createCours(Cours cours);
 
-	void getCours();
+	Cours getCours(Long id);
 
 	List<Cours> getAllCours();
 
-	void updateCours();
+	void updateCours(Long id, Cours nCours);
 
-	void deleteCours();
+	void deleteCours(Long id);
 
 }

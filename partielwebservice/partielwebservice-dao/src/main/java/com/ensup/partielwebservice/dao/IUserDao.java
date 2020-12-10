@@ -4,16 +4,17 @@ import com.ensup.partielwebservice.domaine.User;
 
 public interface IUserDao {
 
+	/**  Methode pour crée un utilisateur
+	 * createUser
+	 * @param
+	 */
+
 	void createUser(User user);
 
-	void getUser();
-
-	void getAllUser();
-
-	void updateUser();
-
-	void deleteUser();
-
+	/** Méthode pour chercher un user 
+	 * @param login ,password
+	 * return user
+	 */
 	User getUser(String login, String password);
 
 }

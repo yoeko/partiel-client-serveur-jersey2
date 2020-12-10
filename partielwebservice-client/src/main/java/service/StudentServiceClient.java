@@ -89,4 +89,12 @@ public class StudentServiceClient {
 		  return listEtudiant;
 		
 	}
+	
+	public void deleteStudent(int id) {
+		Client client = ClientBuilder.newClient();
+
+		WebTarget webTarget = client.target(url).path("delete/"+id);
+		
+		Response response = webTarget.request("application/json").delete();
+	}
 }

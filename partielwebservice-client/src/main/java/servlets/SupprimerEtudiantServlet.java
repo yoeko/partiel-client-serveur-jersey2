@@ -16,6 +16,7 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import domaine.Etudiant;
 import domaine.User;
+import service.StudentServiceClient;
 
 
 /**
@@ -23,7 +24,7 @@ import domaine.User;
  */
 public class SupprimerEtudiantServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-//	private EtudiantService studentService;
+	private StudentServiceClient studentService;
 //	private CoursService courseService;
 	private RequestDispatcher dispatcher = null;
 	private User user = null;
@@ -33,7 +34,7 @@ public class SupprimerEtudiantServlet extends HttpServlet {
 	 * Default constructor.
 	 */
 	public SupprimerEtudiantServlet() {
-//		studentService = new EtudiantService(etudiantDao);
+		studentService = new StudentServiceClient();
 	}
 
 	/**
@@ -72,8 +73,12 @@ public class SupprimerEtudiantServlet extends HttpServlet {
 //		session.setAttribute("courses", getAllCours());
 		session.setAttribute("student", null);
 		
+		studentService.deleteStudent(id);
+		
 		
 		session.setAttribute("message", "Suppression effectuée avec succès !!! ");
+		session.setAttribute("students", studentService.getListStudent());
+		dispatcher = request.getRequestDispatcher("etudiant.jsp");
 		dispatcher.forward(request, response);
 	}
 

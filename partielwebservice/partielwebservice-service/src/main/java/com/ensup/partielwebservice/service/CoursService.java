@@ -23,7 +23,6 @@ public class CoursService implements ICoursService {
 	 * createCours
 	 * @param cours
 	 */
-	@Override
 	public void createCours(Cours cours) {
 		coursDao.createCours(cours);
 	}
@@ -43,7 +42,6 @@ public class CoursService implements ICoursService {
 	 * @param id
 	 * @param nCours
 	 */
-	@Override
 	public void updateCours(Long id, Cours nCours) {
 		coursDao.updateCours(id, nCours);
 	}
@@ -52,7 +50,6 @@ public class CoursService implements ICoursService {
 	 * 
 	 * @param id
 	 */
-	@Override
 	public void deleteCours(Long id) {
 		coursDao.deleteCours(id);
 	}
@@ -61,7 +58,6 @@ public class CoursService implements ICoursService {
 	 * getAllCours
 	 * 
 	 */
-	@Override
 	public List<Cours> getAllCours() {
 		return coursDao.getAllCours();
 	}

@@ -92,6 +92,7 @@ public class EtudiantDao implements IEtudiantDao {
 		etdt.setLast_name(nEtudiant.getLast_name());
 		etdt.setMail(nEtudiant.getMail());
 		etdt.setPhone(nEtudiant.getPhone());
+		etdt.setCours(nEtudiant.getCours());
 		
 		// Ouverture de la transaction
 		EntityTransaction tx = em.getTransaction();

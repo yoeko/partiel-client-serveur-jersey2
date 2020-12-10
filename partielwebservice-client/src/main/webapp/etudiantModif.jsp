@@ -11,13 +11,11 @@
 <div class="container">
 	<br /> <br /> <br /> <br /> <br /> <br />
 
-	<ul>
-		<li><a href="etudiant.jsp">Liste des étudiants</a></li>
-	</ul>
+	<a class="btn btn-primary mb-5  text-center " href="etudiant.jsp">Liste des étudiants</a>
+	
 
 	<!-- Masthead Heading-->
 	<h1>Modifier un étudiant</h1>
-	
 	
 	<div class="">
 	
@@ -29,39 +27,43 @@
 				
 					<div class="col">
 						<div class="md-form md-outline mt-0">
-							<input type="text" id="firstName" name="firstName" class="form-control" value="<%=student.getFirst_name()%>"> 
 							<label for="firstName">First Name</label>
+							<input type="text" id="firstName" name="firstName" class="form-control" value="<%=student.getFirst_name()%>"> 
 						</div>
 					</div>
 					
 					<div class="col">
 						<div class="md-form md-outline mt-0">
-							<input type="text" id="lastName" name="lastName" class="form-control" value="<%=student.getLast_name()%>"> 
 							<label for="lastName">Last Name</label>
+							<input type="text" id="lastName" name="lastName" class="form-control" value="<%=student.getLast_name()%>"> 
 						</div>
 					</div>
 					
 				</div>
 
 				<div class="md-form md-outline mt-0">
-					<input type="text" id="mailAdresse" class="form-control" name="mailAdresse" value="<%=student.getMail()%>"> 
 					<label for="mailAdresse">Mail Adress</label>
+					<input type="text" id="mailAdresse" class="form-control" name="mailAdresse" value="<%=student.getMail()%>"> 
+					
 				</div>
 				
 				
 				<div class="md-form md-outline">
-					<input  id="adress" class="form-control" name="adress" value="<%=student.getAddress()%>" >
 					<label for="adress">Address</label>
+					<input  id="adress" class="form-control" name="adress" value="<%=student.getAddress()%>" >
+					
 				</div>
 				
 				<div class="md-form md-outline mt-0">
-					<input type="text" id="numberPhone" name="numberPhone" class="form-control" value="<%=student.getPhone()%>">
 					<label for="numberPhone">NumberPhone</label>
+					<input type="text" id="numberPhone" name="numberPhone" class="form-control" value="<%=student.getPhone()%>">
+					
 				</div>				
 				
 				<div class="md-form md-outline mt-0">
-					<input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control" value="<%=student.getDob()%>">
 					<label for="dateOfBirth">Birth Date - format(yyyy-mm-dd)</label>
+					<input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control" value="<%=student.getDob()%>">
+					
 				</div>
 				<div class="md-form md-outline mt-0"  style="visibility:hidden;">
 					<input type="text" id="id" name="id" class="form-control" value="<%=student.getId()%>">
@@ -70,7 +72,7 @@
 			
 								
 				<br/> <br/>
-				<div class="text-center mb-2">
+				<div class="text-center ">
 					<button type="submit" class="btn btn-primary mb-4">Submit</button>
 				</div>
 

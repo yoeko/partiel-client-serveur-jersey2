@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import domaine.Etudiant;
 import domaine.User;
+import service.IStudentServiceClient;
 import service.StudentServiceClient;
 
 /**
@@ -22,7 +23,7 @@ import service.StudentServiceClient;
 public class RechercheEtudiantServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private User user = null;
-	private StudentServiceClient studentService;
+	private IStudentServiceClient studentService;
 //	private IEtudiantDao etudiantDao = new EtudiantDao();
 	
 	/**

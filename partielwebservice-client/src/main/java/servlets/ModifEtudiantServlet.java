@@ -18,6 +18,7 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import domaine.Etudiant;
 import domaine.User;
+import service.IStudentServiceClient;
 import service.StudentServiceClient;
 
 /**
@@ -25,7 +26,7 @@ import service.StudentServiceClient;
  */
 public class ModifEtudiantServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private StudentServiceClient studentService;
+	private IStudentServiceClient studentService;
 	private RequestDispatcher dispatcher = null;
 //	private CoursService courseService;
 	private User user = null;

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import domaine.User;
+import service.IStudentServiceClient;
+import service.IUserServiceClient;
 import service.StudentServiceClient;
 import service.UserServiceClient;
 
@@ -25,8 +27,8 @@ import service.UserServiceClient;
 public class ConnexionServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private UserServiceClient userService;
-	private StudentServiceClient studentService;
+	private IUserServiceClient userService;
+	private IStudentServiceClient studentService;
 //	private CoursService courseService;
 	private RequestDispatcher dispatcher = null;
 //	private IEtudiantDao etudiantDao = new EtudiantDao();

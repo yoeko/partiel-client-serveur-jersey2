@@ -21,6 +21,7 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import domaine.Etudiant;
 import domaine.User;
+import service.IStudentServiceClient;
 import service.StudentServiceClient;
 
 
@@ -33,7 +34,7 @@ public class EtudiantServlet extends HttpServlet {
 	
 	//private static final long serialVersionUID = 1L;
 	
-	private StudentServiceClient studentService;
+	private IStudentServiceClient studentService;
 //	private CoursService courseService;
 	private RequestDispatcher dispatcher = null;
 	private User user = null;

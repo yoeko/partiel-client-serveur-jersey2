@@ -15,18 +15,22 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import domaine.User;
 
-public class UserServiceClient {
+public class UserServiceClient implements IUserServiceClient {
 	
 	
-	private String url = "http://localhost:8080/partielwebservice-webservice/rest/json/user/";
-	
-	
+	private static final String url = "http://localhost:8080/partielwebservice-webservice/rest/json/user/";
+		
+	public UserServiceClient() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	@Override
 	public User login(User user)  {
 		
-		ClientConfig clientConfig = new ClientConfig();
-		clientConfig.register(JacksonJsonProvider.class);
 		
-		Client client = ClientBuilder.newClient(clientConfig);
+		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(url).path("login");
 		
 		Response response = webTarget.request("application/json").post(Entity.entity(user, MediaType.APPLICATION_JSON));
@@ -41,12 +45,11 @@ public class UserServiceClient {
 	}
 	
 	
+	@Override
 	public User getUser() {
 		
-		ClientConfig clientConfig = new ClientConfig();
-		clientConfig.register(JacksonJsonProvider.class);
 		
-		Client client = ClientBuilder.newClient(clientConfig);
+		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(url).path("get");
 		
 		Response response = webTarget.request("application/json").get();

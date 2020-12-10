@@ -8,12 +8,9 @@
 <!-- Navigation-->
 <%@include file="menuhaut.jsp"%>
 
-<div class="container">
-	<br /> <br /> <br /> <br /> <br /> <br />
+<div class="container" style="margin-top: 150px">
 
-	<ul>
-		<li><a href="etudiantAjout.jsp">Ajout un étudiant</a></li>
-	</ul>
+	<a class="btn btn-primary mb-3 mt-10" href="etudiantAjout.jsp">Ajout un étudiant</a>
 
 	<form action="RechercheEtudiantServlet" method="post">
 
@@ -92,8 +89,7 @@
 					<td><%=student.getDob()%></td>
 					<td>
 
-						<ul>
-							<li>
+						
 								<a href="EditerEtudiantServlet?id=<%=student.getId()%>" >Edit</a>				
 								
 								<a href="SupprimerEtudiantServlet?id=<%=student.getId()%>" style="color:red">Delete</a>
@@ -102,9 +98,7 @@
 								
 								<!--  <a href="EtudiantCoursServlet?id=<%=student.getId()%>" style="color:blue">Cours</a> -->
 								
-							
-							</li>
-						</ul>
+						
 
 					</td>
 				</tr>

@@ -19,12 +19,20 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import domaine.Etudiant;
 import domaine.User;
 
-public class StudentServiceClient {
+public class StudentServiceClient implements IStudentServiceClient {
 
 	
-	private String url = "http://localhost:8080/partielwebservice-webservice/rest/json/student/";
+	private static final String url = "http://localhost:8080/partielwebservice-webservice/rest/json/student/";
 
 	
+	
+	public StudentServiceClient() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	@Override
 	public List<Etudiant> getListStudent(){
 		
 		Client client = ClientBuilder.newClient();
@@ -39,6 +47,7 @@ public class StudentServiceClient {
 	}
 	
 	
+	@Override
 	public void createStudent(Etudiant student)
 	{
 		
@@ -61,6 +70,7 @@ public class StudentServiceClient {
 		
 	}
 
+	@Override
 	public Etudiant getStudentById(Long id) {
 		
 		
@@ -73,6 +83,7 @@ public class StudentServiceClient {
 		
 	}
 	
+	@Override
 	public List<Etudiant> getStudentByFirstAndLastName(String first_name , String last_name) {
 		
 		Client client = ClientBuilder.newClient();
@@ -86,6 +97,7 @@ public class StudentServiceClient {
 	}
 	
 
+	@Override
 	public void deleteStudent(int id) {
 		Client client = ClientBuilder.newClient();
 
@@ -94,6 +106,7 @@ public class StudentServiceClient {
 		Response response = webTarget.request("application/json").delete();
 	}
 
+	@Override
 	public void updateStudent(Long id, Etudiant etudiant) {
 		
 		Client client = ClientBuilder.newClient();

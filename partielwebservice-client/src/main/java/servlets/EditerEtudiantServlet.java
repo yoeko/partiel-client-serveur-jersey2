@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import domaine.Etudiant;
+import service.IStudentServiceClient;
 import service.StudentServiceClient;
 
 /**
@@ -20,7 +21,7 @@ import service.StudentServiceClient;
  */
 public class EditerEtudiantServlet extends HttpServlet {
 //	private static final long serialVersionUID = 1L;
-	private StudentServiceClient studentService;
+	private IStudentServiceClient studentService;
 	private RequestDispatcher dispatcher = null;
 //	private IEtudiantDao etudiantDao = new EtudiantDao();
 

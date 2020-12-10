@@ -63,7 +63,7 @@ public class ViewEtudiantServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		String object = request.getParameter("id");
-		int id = Integer.valueOf(object);
+		Long id = Long.valueOf(object);
 
 		dispatcher = request.getRequestDispatcher("etudiantView.jsp");
 		session.setAttribute("student", studentService.getStudentById(id));

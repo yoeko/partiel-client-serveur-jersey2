@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <Appenders>
+
+    <!-- Console Appender -->
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n" />
+    </Console>
+    
+     <File name="LogFile" FileName="logs/app.log">
+      <PatternLayout>
+        <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+      </PatternLayout>
+    </File>
+    
+    <File name="DaoFile" FileName="logs/dao.log">
+      <PatternLayout>
+        <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+      </PatternLayout>
+    </File>
+    
+    <File name="ServiceFile" FileName="logs/service.log">
+      <PatternLayout>
+        <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+      </PatternLayout>
+    </File>
+    
+    <File name="WebServiceFile" FileName="logs/webservice.log">
+      <PatternLayout>
+        <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+      </PatternLayout>
+    </File>
+    
+    
+  </Appenders>
+  
+
+  <Loggers>
+    <Root level="error">
+      <AppenderRef ref="Console" />
+      <AppenderRef ref="LogFile" />
+    </Root>
+    
+    <!-- Log everything in hibernate -->
+    <Logger name="org.hibernate" level="trace" additivity="false">
+      <AppenderRef ref="LogFile" />
+    </Logger>
+    
+    <!-- Log everything in dao -->
+    <Logger name="com.ensup.partielwebservice.dao" level="trace" additivity="false">
+      <AppenderRef ref="DaoFile" />
+    </Logger>
+    
+    <!-- Log everything in service -->
+    <Logger name="com.ensup.partielwebservice.service" level="trace" additivity="false">
+      <AppenderRef ref="ServiceFile" />
+    </Logger>
+    
+    <!-- Log everything in web -->
+    <Logger name="com.ensup.webservice" level="trace" additivity="false">
+      <AppenderRef ref="ServiceFile" />
+    </Logger>
+    
+    
+    
+    
+  </Loggers>
+  
+</Configuration>

@@ -49,3 +49,6 @@ Une fois les modications effectuées
     -Lancer le serveur tomcat 
     
     Lancer l'application via un navigateur : [http://localhost:8080/partielwebservice-client](http://localhost:8080/partielwebservice-client)
+    
+    - Se connecter avec un login: admin et un mot de passe: admin
+

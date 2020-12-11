@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.core.Response;
 
 import domaine.Cours;
 import domaine.Etudiant;
@@ -35,6 +36,8 @@ public class AjoutCoursServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		session.setAttribute("message", null);
 		dispatcher = request.getRequestDispatcher("coursAjout.jsp");
 	}
 
@@ -51,12 +54,16 @@ public class AjoutCoursServlet extends HttpServlet {
 		
 		System.out.println(cours.getNumberHours());
 		
-		courseService.createCours(cours);
+		Response responseFromService = courseService.createCours(cours);
+		if (responseFromService.getStatus()==200 || responseFromService.getStatus()==204) {
+			session.setAttribute("message", "Elément enregistré avec succès");
+		} else {
+			session.setAttribute("message", "Un problème est survenu. Veuillez réessayer.");
+		}
 		
 		session.setAttribute("courses", courseService.getAllCours());
 		
 		dispatcher = request.getRequestDispatcher("cours.jsp");
-		
 		dispatcher.forward(request, response);
 
 	}

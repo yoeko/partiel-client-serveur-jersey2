@@ -49,33 +49,35 @@ public class CoursServiceClient implements ICoursServiceClient {
 	}
 	
 	@Override
-	public void createCours(Cours cours) {
+	public Response createCours(Cours cours) {
 		
 		Client client  = ClientBuilder.newClient();
 		
 		WebTarget webTarget = client.target(url).path("create");
 		Response response = webTarget.request("application/json").post(Entity.entity(cours, MediaType.APPLICATION_JSON));
+		return response;
 	}
 	
 	@Override
-	public void updateCours(Long id , Cours cours) {
+	public Response updateCours(Long id , Cours cours) {
 		
 		
 		Client client = ClientBuilder.newClient();
 		
 		WebTarget webTarget = client.target(url).path("update/"+id);
-		
 		Response response = webTarget.request("application/json").put(Entity.entity(cours, MediaType.APPLICATION_JSON));
+		return response;
 	}
 	
 	@Override
-	public void deleteCours(Long id) {
+	public Response deleteCours(Long id) {
 		
 		
 		Client client = ClientBuilder.newClient();
 		
 		WebTarget webTarget =  client.target(url).path("delete/"+id);
 		Response response = webTarget.request("application/json").delete();
+		return response;
 		
 	}
 

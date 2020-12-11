@@ -2,6 +2,8 @@ package service;
 
 import java.util.List;
 
+import javax.ws.rs.core.Response;
+
 import domaine.Cours;
 
 public interface ICoursServiceClient {
@@ -10,10 +12,10 @@ public interface ICoursServiceClient {
 
 	Cours getCoursById(Long id);
 
-	void createCours(Cours cours);
+	Response createCours(Cours cours);
 
-	void updateCours(Long id, Cours cours);
+	Response updateCours(Long id, Cours cours);
 
-	void deleteCours(Long id);
+	Response deleteCours(Long id);
 
 }

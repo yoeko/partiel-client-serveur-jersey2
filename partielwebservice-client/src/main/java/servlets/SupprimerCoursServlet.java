@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.core.Response;
 
 import domaine.User;
 import service.CoursServiceClient;
@@ -33,6 +34,8 @@ public class SupprimerCoursServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		session.setAttribute("message", null);
 		methode(request, response);
 	}
 
@@ -53,10 +56,13 @@ public class SupprimerCoursServlet extends HttpServlet {
 //		session.setAttribute("courses", getAllCours());
 		session.setAttribute("cours", null);
 		
-		courseService.deleteCours(id);
+		Response responseFromService = courseService.deleteCours(id);
+		if (responseFromService.getStatus()==200 || responseFromService.getStatus()==204) {
+			session.setAttribute("message", "Elément supprimé avec succès");
+		} else {
+			session.setAttribute("message", "Un problème est survenu. Veuillez réessayer.");
+		}
 		
-		
-		session.setAttribute("message", "Suppression effectuée avec succès !!! ");
 		session.setAttribute("courses", courseService.getAllCours());
 		dispatcher = request.getRequestDispatcher("cours.jsp");
 		dispatcher.forward(request, response);

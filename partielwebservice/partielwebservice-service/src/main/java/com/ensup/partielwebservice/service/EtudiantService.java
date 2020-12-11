@@ -11,7 +11,7 @@ import com.ensup.partielwebservice.domaine.Etudiant;
 
 public class EtudiantService implements IEtudiantService {
 	
-	private static final Logger serviceLogger = LogManager.getLogger(UserService.class);
+	private static final Logger serviceLogger = LogManager.getLogger(EtudiantService.class);
 	
 	IEtudiantDao etudiantDao = new EtudiantDao();
 	

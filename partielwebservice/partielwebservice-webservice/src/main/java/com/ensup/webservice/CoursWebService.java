@@ -26,7 +26,7 @@ public class CoursWebService {
 
 	private ICoursDao dao = new CoursDao();
 	private CoursService coursService = new CoursService(dao);
-	private static final Logger serviceLogger = LogManager.getLogger(UserService.class);
+	private static final Logger webServiceLogger = LogManager.getLogger(CoursWebService.class);
 	
 	/**
 	 * Method get All Cours
@@ -36,6 +36,7 @@ public class CoursWebService {
 	@Path("/get")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Cours> getAll() {
+		webServiceLogger.info("Module WebService, Méthode get All Cours");
 		return coursService.getAllCours();
 	}
 	
@@ -48,6 +49,7 @@ public class CoursWebService {
 	@Path("/detail/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Cours getById(@PathParam(value ="id") Long id) {
+		webServiceLogger.info("Module WebService, Méthode get Cours By Id");
 		return coursService.getCours(id);
 	}
 	
@@ -67,6 +69,7 @@ public class CoursWebService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public void createCours(Cours Cours) {		
+		webServiceLogger.info("Module WebService, Méthode get create Cours");
 		coursService.createCours(Cours);
 	}
 	
@@ -79,6 +82,7 @@ public class CoursWebService {
 	@Path("/update/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void updateCours(@PathParam(value ="id") Long id, Cours Cours) {		
+		webServiceLogger.info("Module WebService, Méthode get update Cours");
 		coursService.updateCours(id, Cours);
 	}
 	
@@ -89,7 +93,8 @@ public class CoursWebService {
 	@DELETE
 	@Path("/delete/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void deleteCours(@PathParam(value ="id") Long id) {		
+	public void deleteCours(@PathParam(value ="id") Long id) {	
+		webServiceLogger.info("Module WebService, Méthode get delete Cours");
 		coursService.deleteCours(id);
 	}
 }

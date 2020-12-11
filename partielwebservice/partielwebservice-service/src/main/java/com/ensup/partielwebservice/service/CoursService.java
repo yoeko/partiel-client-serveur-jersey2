@@ -11,7 +11,7 @@ import com.ensup.partielwebservice.domaine.Cours;
 
 public class CoursService implements ICoursService {
 	
-	private static final Logger serviceLogger = LogManager.getLogger(UserService.class);
+	private static final Logger serviceLogger = LogManager.getLogger(CoursService.class);
 	
 	ICoursDao coursDao = new CoursDao();
 	

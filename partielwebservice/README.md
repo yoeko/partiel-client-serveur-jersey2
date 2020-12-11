@@ -30,7 +30,7 @@ Si vous ne changer pas les parametres de connexion de la base c'est a dire param
 
   Pour  changer les parametres de connexion de la base de donnée 
 
-  -Ouvrir le fichier de configuration partielwebservice/partielwebservice-dao/src/main/resources/META-INF/persistencce.xml
+  -Ouvrir le fichier de configuration partielwebservice/partielwebservice-dao/src/main/resources/META-INF/persistence.xml
 
   -Changer les parametres de connection de la base de données selon votre configuration.
 

@@ -10,9 +10,7 @@ Commencez par le projet partielwebservice qui est le projet serveur webservice
 
 puis le projet partielwebservice-client qui est l'application client
 
-Une petite démo de l'application
-
-[Video Démo](https://www.hippovideo.io/video/play/PvuOrewrH4DSb04oh2HKsMNNpjpgb92TiPVwSTzuPng?utm_source=hv-campaigns&hreferer=private&_=1607675073905&)
+Une petite démo de l'application : [Video Démo](https://www.hippovideo.io/video/play/PvuOrewrH4DSb04oh2HKsMNNpjpgb92TiPVwSTzuPng?utm_source=hv-campaigns&hreferer=private&_=1607675073905&)
 
 NB: Chemin des fichiers Logs
 

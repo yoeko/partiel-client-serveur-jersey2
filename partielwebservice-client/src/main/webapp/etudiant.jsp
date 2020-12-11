@@ -10,7 +10,20 @@
 
 <div class="container" style="margin-top: 150px">
 
-	<a class="btn btn-primary mb-3 mt-10" href="etudiantAjout.jsp">Ajout un étudiant</a>
+	<% if(session.getAttribute("message")!=null) { %>
+	
+	<div class="alert alert-secondary alert-dismissible fade show" role="alert">
+	  <strong> <%= session.getAttribute("message") %> </strong>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
+	
+	<% 
+	}
+    %>
+
+	<a class="btn btn-primary mb-3 mt-10" href="AjoutEtudiantServlet">Ajout un étudiant</a>
 
 	<form action="RechercheEtudiantServlet" method="post">
 

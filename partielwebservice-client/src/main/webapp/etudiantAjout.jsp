@@ -8,7 +8,19 @@
 
 <div class="container">
 	<br /> <br /> <br /> <br /> <br /> <br />
-
+	
+	<% if(session.getAttribute("message")!=null) { %>
+	
+	<div class="alert alert-secondary alert-dismissible fade show" role="alert">
+	  <strong> <%= session.getAttribute("message") %> </strong>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
+	
+	<% 
+	}
+    %>
 	
 
 	<!-- Masthead Heading-->

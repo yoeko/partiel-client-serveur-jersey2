@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.core.Response;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
@@ -46,7 +47,10 @@ public class ModifEtudiantServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		session.setAttribute("message", null);
 		dispatcher = request.getRequestDispatcher("etudiantAjout.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**
@@ -71,11 +75,15 @@ public class ModifEtudiantServlet extends HttpServlet {
 		session.setAttribute("student", null);
 		user = (User) session.getAttribute("user");
 		
-		 studentService.updateStudent(idEtudiant, student);
-		  
-		  
-		  session.setAttribute("student", null);
-		  session.setAttribute("students",studentService.getListStudent());
+		Response responseFromService = studentService.updateStudent(idEtudiant, student);
+		if (responseFromService.getStatus()==200 || responseFromService.getStatus()==204) {
+			session.setAttribute("message", "Elément modifié avec succès");
+		} else {
+			session.setAttribute("message", "Un problème est survenu. Veuillez réessayer.");
+		}
+		
+		session.setAttribute("student", null);
+		session.setAttribute("students",studentService.getListStudent());
 		 
 //		session.setAttribute("courses", getAllCours());
 		

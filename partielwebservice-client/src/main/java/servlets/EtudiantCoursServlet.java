@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.core.Response;
 
 import domaine.Cours;
 import domaine.Etudiant;
@@ -67,7 +68,13 @@ public class EtudiantCoursServlet extends HttpServlet {
 		
 		System.out.println(course);
 		
-		studentService.updateStudent(id, student);
+		Response responseFromService = studentService.updateStudent(id, student);
+		if (responseFromService.getStatus()==200 || responseFromService.getStatus()==204) {
+			session.setAttribute("message", "Elément modifié avec succès");
+		} else {
+			session.setAttribute("message", "Un problème est survenu. Veuillez réessayer.");
+		}
+		
 		dispatcher = request.getRequestDispatcher("etudiant.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -75,6 +82,7 @@ public class EtudiantCoursServlet extends HttpServlet {
 	public void methode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
+		session.setAttribute("message", null);
 		String object = request.getParameter("id");
 		Long id = Long.valueOf(object);
 				

@@ -68,6 +68,7 @@ public class EtudiantServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		user = (User) session.getAttribute("user");
 		
+		session.setAttribute("message", null);
 		session.setAttribute("students",studentService.getListStudent() );
 		session.setAttribute("courses",courseService.getAllCours());
 		

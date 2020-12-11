@@ -2,20 +2,22 @@ package service;
 
 import java.util.List;
 
+import javax.ws.rs.core.Response;
+
 import domaine.Etudiant;
 
 public interface IStudentServiceClient {
 
 	List<Etudiant> getListStudent();
 
-	void createStudent(Etudiant student);
+	Response createStudent(Etudiant student);
 
 	Etudiant getStudentById(Long id);
 
 	List<Etudiant> getStudentByFirstAndLastName(String first_name, String last_name);
 
-	void deleteStudent(int id);
+	Response deleteStudent(int id);
 
-	void updateStudent(Long id, Etudiant etudiant);
+	Response updateStudent(Long id, Etudiant etudiant);
 
 }

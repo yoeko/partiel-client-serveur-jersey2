@@ -39,6 +39,7 @@ public class AjoutCoursServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("message", null);
 		dispatcher = request.getRequestDispatcher("coursAjout.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**

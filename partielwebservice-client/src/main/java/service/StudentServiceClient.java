@@ -52,8 +52,10 @@ public class StudentServiceClient implements IStudentServiceClient {
 	
 	
 	@Override
-	public void createStudent(Etudiant student)
+	public Response createStudent(Etudiant student)
 	{
+		
+		Response response = null;
 		
 		Client client = ClientBuilder.newClient();
 
@@ -64,13 +66,14 @@ public class StudentServiceClient implements IStudentServiceClient {
 		
 		try {
 			input = objectMapper.writeValueAsString(student);
-			System.out.println(input);
-			Response response = webTarget.request("application/json").post(Entity.json(input));
+			response = webTarget.request("application/json").post(Entity.json(input));
+			
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
+		return response;
 		
 	}
 
@@ -102,24 +105,24 @@ public class StudentServiceClient implements IStudentServiceClient {
 	
 
 	@Override
-	public void deleteStudent(int id) {
+	public Response deleteStudent(int id) {
 		Client client = ClientBuilder.newClient();
 
 		WebTarget webTarget = client.target(url).path("delete/"+id);
 		
 		Response response = webTarget.request("application/json").delete();
+		return response;
 	}
 
 	@Override
-	public void updateStudent(Long id, Etudiant etudiant) {
+	public Response updateStudent(Long id, Etudiant etudiant) {
 		
 		Client client = ClientBuilder.newClient();
 
 		WebTarget webTarget = client.target(url).path("update/"+id);
 		
-		 webTarget.request("application/json").put(Entity.entity(etudiant, MediaType.APPLICATION_JSON));
-		
-		
+		Response response = webTarget.request("application/json").put(Entity.entity(etudiant, MediaType.APPLICATION_JSON));
+		return response;		
 		
 	}
 	

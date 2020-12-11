@@ -10,14 +10,11 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.glassfish.jersey.client.ClientConfig;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import domaine.Etudiant;
-import domaine.User;
 
 public class StudentServiceClient implements IStudentServiceClient {
 
@@ -31,25 +28,38 @@ public class StudentServiceClient implements IStudentServiceClient {
 		// TODO Auto-generated constructor stub
 	}
 
-
+	/**
+	 * Methode pour recuperer la liste des etudiants
+	 * @return 
+	 */
 	@Override
 	public List<Etudiant> getListStudent(){
+		
 		
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(url).path("get");
 		
 		Response response = webTarget.request("application/json").get();
 		 
-		  List<Etudiant> listEtudiant = response.readEntity(new GenericType<List<Etudiant>>() {});
-		  
-		  return listEtudiant;
+		List<Etudiant> listEtudiant = response.readEntity(new GenericType<List<Etudiant>>(){});
+		
+
+		return listEtudiant;
 		
 	}
 	
 	
+	/**
+	 * Methode pour crée un étudiant
+	 * @param student
+	 * @return 
+	 */
+	
 	@Override
-	public void createStudent(Etudiant student)
+	public Response createStudent(Etudiant student)
 	{
+		
+		Response response = null;
 		
 		Client client = ClientBuilder.newClient();
 
@@ -60,16 +70,23 @@ public class StudentServiceClient implements IStudentServiceClient {
 		
 		try {
 			input = objectMapper.writeValueAsString(student);
-			System.out.println(input);
-			Response response = webTarget.request("application/json").post(Entity.json(input));
+			response = webTarget.request("application/json").post(Entity.json(input));
+			
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
+		return response;
 		
 	}
 
+
+	/**
+	 * Methode pour recuperer un etudiant par son id
+	 * @param id
+	 * @return
+	 */
 	@Override
 	public Etudiant getStudentById(Long id) {
 		
@@ -83,6 +100,13 @@ public class StudentServiceClient implements IStudentServiceClient {
 		
 	}
 	
+
+	/**
+	 * ethode de recherche d'etudiant par son nom et prenom
+	 * @param first_name
+	 * @param last_name
+	 * @return
+	 */
 	@Override
 	public List<Etudiant> getStudentByFirstAndLastName(String first_name , String last_name) {
 		
@@ -96,27 +120,41 @@ public class StudentServiceClient implements IStudentServiceClient {
 		
 	}
 	
-
+	
+	/**
+	 * Methode de suppression d'etudiant
+	 * @param id
+	 * @return
+	 */
 	@Override
-	public void deleteStudent(int id) {
+	public Response deleteStudent(int id) {
 		Client client = ClientBuilder.newClient();
 
 		WebTarget webTarget = client.target(url).path("delete/"+id);
 		
 		Response response = webTarget.request("application/json").delete();
-		
+
+		return response;
+
 	}
 
+	
+	/**
+	 * Methode de mise a jour des informations d'un etudiant
+	 * @param id
+	 * @param etudiant
+	 * @return
+	 */
 	@Override
-	public void updateStudent(Long id, Etudiant etudiant) {
+	public Response updateStudent(Long id, Etudiant etudiant) {
 		
 		Client client = ClientBuilder.newClient();
 
 		WebTarget webTarget = client.target(url).path("update/"+id);
 		
-		 webTarget.request("application/json").put(Entity.entity(etudiant, MediaType.APPLICATION_JSON));
 		
-		
+		Response response = webTarget.request("application/json").put(Entity.entity(etudiant, MediaType.APPLICATION_JSON));
+		return response;		
 		
 	}
 	

@@ -7,25 +7,25 @@
       <PatternLayout pattern="%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n" />
     </Console>
     
-     <File name="LogFile" FileName="logs/app.log">
+     <File name="LogFile" FileName="C:\logs\app.log">
       <PatternLayout>
         <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
       </PatternLayout>
     </File>
     
-    <File name="DaoFile" FileName="logs/dao.log">
+    <File name="DaoFile" FileName="C:\logs\dao.log">
       <PatternLayout>
         <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
       </PatternLayout>
     </File>
     
-    <File name="ServiceFile" FileName="logs/service.log">
+    <File name="ServiceFile" FileName="C:\logs\service.log">
       <PatternLayout>
         <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
       </PatternLayout>
     </File>
     
-    <File name="WebServiceFile" FileName="logs/webservice.log">
+    <File name="WebServiceFile" FileName="C:\logs\webservice.log">
       <PatternLayout>
         <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
       </PatternLayout>

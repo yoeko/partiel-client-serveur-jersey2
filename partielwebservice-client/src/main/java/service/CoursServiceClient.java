@@ -12,18 +12,19 @@ import javax.ws.rs.core.Response;
 
 import domaine.Cours;
 
-public class CoursServiceClient implements ICoursServiceClient {
+public class CoursServiceClient implements ICoursServiceClient  {
 	
 	private static final String url = "http://localhost:8080/partielwebservice-webservice/rest/json/cours/";
-	
-	
-	
 	
 	public CoursServiceClient() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Methode pour recupere la liste des cours
+	 * @return
+	 */
 	@Override
 	public List<Cours> getAllCours(){
 		
@@ -35,6 +36,11 @@ public class CoursServiceClient implements ICoursServiceClient {
 		
 	}
 	
+	/**
+	 * Methode pour rechercher un cours par son id
+	 * @param id
+	 * @return
+	 */
 	@Override
 	public Cours getCoursById(Long id) {
 		
@@ -48,34 +54,52 @@ public class CoursServiceClient implements ICoursServiceClient {
 		
 	}
 	
+	/**
+	 * Methode pour créer un cours
+	 * @param cours
+	 * @return
+	 */
 	@Override
-	public void createCours(Cours cours) {
+	public Response createCours(Cours cours) {
 		
 		Client client  = ClientBuilder.newClient();
 		
 		WebTarget webTarget = client.target(url).path("create");
 		Response response = webTarget.request("application/json").post(Entity.entity(cours, MediaType.APPLICATION_JSON));
+		return response;
 	}
 	
+	/**
+	 * Methode pour modifie un cours
+	 * @param id
+	 * @param cours
+	 * @return
+	 */
 	@Override
-	public void updateCours(Long id , Cours cours) {
+	public Response updateCours(Long id , Cours cours) {
 		
 		
 		Client client = ClientBuilder.newClient();
 		
 		WebTarget webTarget = client.target(url).path("update/"+id);
-		
 		Response response = webTarget.request("application/json").put(Entity.entity(cours, MediaType.APPLICATION_JSON));
+		return response;
 	}
 	
+	/**
+	 * Methode pour supprimer un cours
+	 * @param id
+	 * @return
+	 */
 	@Override
-	public void deleteCours(Long id) {
+	public Response deleteCours(Long id) {
 		
 		
 		Client client = ClientBuilder.newClient();
 		
 		WebTarget webTarget =  client.target(url).path("delete/"+id);
 		Response response = webTarget.request("application/json").delete();
+		return response;
 		
 	}
 

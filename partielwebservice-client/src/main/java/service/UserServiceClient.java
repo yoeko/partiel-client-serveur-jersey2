@@ -15,7 +15,7 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import domaine.User;
 
-public class UserServiceClient implements IUserServiceClient {
+public class UserServiceClient implements IUserServiceClient  {
 	
 	
 	private static final String url = "http://localhost:8080/partielwebservice-webservice/rest/json/user/";
@@ -26,6 +26,11 @@ public class UserServiceClient implements IUserServiceClient {
 	}
 
 
+	/**
+	 * Methode de connexion d'un utilisateur
+	 * @param user
+	 * @return
+	 */
 	@Override
 	public User login(User user)  {
 		
@@ -45,6 +50,10 @@ public class UserServiceClient implements IUserServiceClient {
 	}
 	
 	
+	/**
+	 * Methode pour recuperer un user
+	 * @return
+	 */
 	@Override
 	public User getUser() {
 		

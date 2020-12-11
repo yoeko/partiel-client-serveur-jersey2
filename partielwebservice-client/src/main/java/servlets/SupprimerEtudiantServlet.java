@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.core.Response;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 
 import domaine.Etudiant;
 import domaine.User;
+import service.IStudentServiceClient;
 import service.StudentServiceClient;
 
 
@@ -24,7 +26,7 @@ import service.StudentServiceClient;
  */
 public class SupprimerEtudiantServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private StudentServiceClient studentService;
+	private IStudentServiceClient studentService;
 //	private CoursService courseService;
 	private RequestDispatcher dispatcher = null;
 	private User user = null;
@@ -43,6 +45,8 @@ public class SupprimerEtudiantServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		session.setAttribute("message", null);
 		methode(request, response);
 	}
 
@@ -73,10 +77,14 @@ public class SupprimerEtudiantServlet extends HttpServlet {
 //		session.setAttribute("courses", getAllCours());
 		session.setAttribute("student", null);
 		
-		studentService.deleteStudent(id);
+		Response responseFromService = studentService.deleteStudent(id);
+		if (responseFromService.getStatus()==200 || responseFromService.getStatus()==204) {
+			session.setAttribute("message", "Elément supprimé avec succès");
+		} else {
+			session.setAttribute("message", "Un problème est survenu. Veuillez réessayer.");
+		}
 		
 		
-		session.setAttribute("message", "Suppression effectuée avec succès !!! ");
 		session.setAttribute("students", studentService.getListStudent());
 		dispatcher = request.getRequestDispatcher("etudiant.jsp");
 		dispatcher.forward(request, response);

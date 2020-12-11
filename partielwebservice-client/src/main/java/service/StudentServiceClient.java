@@ -104,6 +104,7 @@ public class StudentServiceClient implements IStudentServiceClient {
 		WebTarget webTarget = client.target(url).path("delete/"+id);
 		
 		Response response = webTarget.request("application/json").delete();
+		
 	}
 
 	@Override

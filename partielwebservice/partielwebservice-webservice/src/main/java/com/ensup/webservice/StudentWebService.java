@@ -24,6 +24,10 @@ public class StudentWebService {
 	private IEtudiantDao dao = new EtudiantDao();
 	private EtudiantService studentService = new EtudiantService(dao);
 	
+	/**
+	 * Method for get All Student
+	 * @return
+	 */
 	@GET
 	@Path("/get")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -31,6 +35,11 @@ public class StudentWebService {
 		return studentService.getAllStudent();
 	}
 	
+	/**
+	 * Method for get a Student by id
+	 * @param id
+	 * @return
+	 */
 	@GET
 	@Path("/detail/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -38,13 +47,23 @@ public class StudentWebService {
 		return studentService.getEtudiant(id);
 	}
 	
+	/**
+	 * Method for get Student by firstname and lastname
+	 * @param first_name
+	 * @param last_name
+	 * @return
+	 */
 	@GET
 	@Path("/research/{first_name}/{last_name}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Etudiant> getStudentByResearch(@PathParam(value ="first_name") String first_name, @PathParam(value ="last_name") String last_name) {
 		return studentService.getStudentByResearch(first_name, last_name);
 	}
-
+	
+	/**
+	 * Method for create Student 
+	 * @param etudiant
+	 */
 	@POST
 	@Path("/create")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -53,6 +72,11 @@ public class StudentWebService {
 		studentService.createEtudiant(etudiant);
 	}
 	
+	/**
+	 * Method for update Student
+	 * @param id
+	 * @param etudiant
+	 */
 	@PUT
 	@Path("/update/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -60,6 +84,10 @@ public class StudentWebService {
 		studentService.updateStudent(id, etudiant);
 	}
 	
+	/**
+	 * Method for delete Student
+	 * @param id
+	 */
 	@DELETE
 	@Path("/delete/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)

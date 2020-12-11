@@ -19,6 +19,10 @@ public class UserWebService {
 	
 	private UserService userService = new UserService();
 	
+	/**
+	 * Method for demonstrate an example of get
+	 * @return
+	 */
 	@GET
 	@Path("/get")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -34,6 +38,11 @@ public class UserWebService {
 
 	}
 
+	/**
+	 * Method for get user with login and password
+	 * @param user
+	 * @return
+	 */
 	@POST
 	@Path("/login")
 	@Consumes(MediaType.APPLICATION_JSON)

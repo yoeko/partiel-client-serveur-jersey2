@@ -35,14 +35,18 @@ public class StudentServiceClient implements IStudentServiceClient {
 	@Override
 	public List<Etudiant> getListStudent(){
 		
-		Client client = ClientBuilder.newClient();
+		ClientConfig clientConfig = new ClientConfig();
+		clientConfig.register(JacksonJsonProvider.class);
+		
+		Client client = ClientBuilder.newClient(clientConfig);
 		WebTarget webTarget = client.target(url).path("get");
 		
 		Response response = webTarget.request("application/json").get();
 		 
-		  List<Etudiant> listEtudiant = response.readEntity(new GenericType<List<Etudiant>>() {});
-		  
-		  return listEtudiant;
+		List<Etudiant> listEtudiant = response.readEntity(new GenericType<List<Etudiant>>(){});
+		
+
+		return listEtudiant;
 		
 	}
 	

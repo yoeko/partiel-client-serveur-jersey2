@@ -2,11 +2,16 @@ package com.ensup.partielwebservice.service;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.ensup.partielwebservice.dao.EtudiantDao;
 import com.ensup.partielwebservice.dao.IEtudiantDao;
 import com.ensup.partielwebservice.domaine.Etudiant;
 
 public class EtudiantService implements IEtudiantService {
+	
+	private static final Logger serviceLogger = LogManager.getLogger(UserService.class);
 	
 	IEtudiantDao etudiantDao = new EtudiantDao();
 	
@@ -26,6 +31,7 @@ public class EtudiantService implements IEtudiantService {
 	 * @param etudiant
 	 */
 	public void createEtudiant(Etudiant etudiant) {
+		serviceLogger.info("Module Service, Méthode create Student");
 		etudiantDao.createEtudiant(etudiant);
 	}
 	
@@ -34,6 +40,7 @@ public class EtudiantService implements IEtudiantService {
 	 * @param id
 	 */
 	public Etudiant getEtudiant(Long id) {
+		serviceLogger.info("Module Service, Méthode get Etudiant");
 		return etudiantDao.getEtudiant(id);
 	}
 	
@@ -42,10 +49,12 @@ public class EtudiantService implements IEtudiantService {
 	 * @return
 	 */
 	public Etudiant getEtudiantByEmail(String email) {
+		serviceLogger.info("Module Service, Méthode get Etudiant By Email");
 		return etudiantDao.getEtudiantByEmail(email);
 	}
 	
 	public List<Etudiant> getStudentByResearch(String firstNameR, String lastNameR) {
+		serviceLogger.info("Module Service, Méthode get Student By Research");
 		return etudiantDao.getStudentByResearch(firstNameR, lastNameR);
 	}
 	
@@ -54,6 +63,7 @@ public class EtudiantService implements IEtudiantService {
 	 * @param etudiant, nEtudiant
 	 */
 	public void updateStudent(Long id, Etudiant student) {
+		serviceLogger.info("Module Service, Méthode update Student");
 		etudiantDao.updateStudent(id, student);
 	}
 	
@@ -62,6 +72,7 @@ public class EtudiantService implements IEtudiantService {
 	 * 
 	 */
 	public List<Etudiant> getAllStudent() {
+		serviceLogger.info("Module Service, Méthode get All Student");
 		return etudiantDao.getAllStudent();
 	}
 	
@@ -70,6 +81,7 @@ public class EtudiantService implements IEtudiantService {
 	 * @id
 	 */
 	public void deleteEtudiant(Long id) {
+		serviceLogger.info("Module Service, Méthode get All Student");
 		etudiantDao.deleteEtudiant(id);
 	}
 
